@@ -1,0 +1,10 @@
+form#register(action='/auth/register', method='post', data-toggle="validator", role="form")
+  input(type='hidden', name='_csrf', value= csrfToken)
+  //- form-element(forLabel, label, type, name, id, placeholder, iconClassName, requiredBool)
+  +form-element('fname', 'First Name', 'text', 'fname', 'fname', 'Enter First Name', 'glyphicon glyphicon-user', true)(data-error="First Name must have minimum 2 character", data-minlength="2")
+  +form-element('lname', 'Last Name', 'text', 'lname', 'lname', 'Enter Last Name', 'glyphicon glyphicon-user', true)(data-error="Last Name must have minimum 2 character", data-minlength="2")
+  +form-element('email', 'Email', 'email', 'email', 'emailRegister', 'Enter Email', 'glyphicon glyphicon-envelope', true)(data-error="Email Address is invalid")
+  +form-element('inputPassword', 'Password', 'password', 'password', 'passwordRegister', 'Enter Password', 'glyphicon glyphicon-lock', true)(data-error="Password must have minimum 6 character", data-minlength="6")
+  +form-element('confirmPassword', 'Confirm Password', 'password', 'confirmPassword', 'confirmPassword', 'Confirm Password', 'glyphicon glyphicon-lock', true)(data-match="#passwordRegister" data-match-error="Passwords do not match")
+  hr
+  button.btn.btn-primary.btn-block.hvr-grow(type='submit') Submit

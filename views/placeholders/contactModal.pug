@@ -1,0 +1,30 @@
+#contactUsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+        h3#myModalLabel We'd Love to Hear From You
+      .modal-body
+        h5
+          | We value your input. Please feel free to contact us or provide feedback by submitting the form below
+          | and we will try to get back to you as soon as possible.
+        form#contact.form-horizontal.col-sm-12(action="/contact", method="post", role="form", data-toggle="validator")
+          input(type='hidden', name='_csrf', value=csrfToken)
+          .form-group
+            label(style='margin-top: 25px') * Name
+            input.form-control(name='contactName', placeholder='Your name must only container letters', data-placement='top', data-trigger='manual', type='text', pattern="[A-Za-z, -]{2,}", required)
+          .form-group
+            label * E-Mail
+            input.form-control(name='contactEmail', placeholder='email@you.com (so that we can contact you)', data-placement='top', data-trigger='manual', type='email', required)
+          .form-group
+            label Location
+            input.form-control(name='contactLocation', placeholder='City, Country', data-placement='top', data-trigger='manual', data-content='Must only contain letters.', type='text', pattern="[A-Za-z, -]{2,}")
+          .form-group
+            label * Message
+            textarea.form-control(style='height: 100px', name='contactMsg', placeholder='Your message here..', data-placement='top', data-trigger='manual', required)
+          .form-group
+            button.btn.btn-success.pull-right(type='submit') Send It!
+            p#form-error.help-block.pull-left.text-danger.hide   The form is not valid.
+      .modal-footer
+        button.btn(data-dismiss='modal', aria-hidden='true') Cancel
+

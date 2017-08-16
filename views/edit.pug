@@ -1,0 +1,96 @@
+extends placeholders/header.pug
+block content
+  if isAuth
+    link(rel="stylesheet", href="/stylesheets/edit.css")
+    .container
+      aside.sidebarDisplayed
+        #page-content-wrapper
+          .container-fluid
+            .pageheader
+              h2 Personal Info
+              hr
+              .row
+                .col-md-9.personal-info
+                  form#uploadForm.form-horizontal(action='/edit/uploadPic', method='post', enctype='multipart/form-data', role='form', data-toggle="validator")
+                    input(type='hidden', name='_csrf', value=csrfToken)
+                    .form-group
+                      .text-center
+                        img.avatar.img-thumbnail(src=userData.image, alt='avatar', width='200px', height='200px')
+                        h6 Upload profile photo...
+                        input.form-control.file-button(type='file', name='pic_upload', accept='image/*', required)
+                        input.btn.btn-primary.upload-button(type='submit', value='Upload')
+                  if !isSocial
+                    form#updateForm.form-horizontal(role='form')
+                      input(type='hidden', name='_csrf', value=csrfToken)
+                      .form-group
+                        label.col-lg-3.control-label * First name:
+                        .col-lg-8
+                          input.form-control(type='text', name='first_name', value=userData.firstname)
+                      .form-group
+                        label.col-lg-3.control-label * Last name:
+                        .col-lg-8
+                          input.form-control(type='text', name='last_name', value=userData.lastname)
+                      .form-group
+                        label.col-lg-3.control-label Email:
+                        .col-lg-8
+                          input.form-control(type='text', value=userData.email, readonly)
+                      .form-group
+                        label.col-md-3.control-label * Current Password:
+                        .col-md-8
+                          input.form-control(type='password', name='current_password', placeholder='Enter your password', auto-complete='new-password')
+                      .form-group
+                        label.col-md-6.control-label
+                          input#updateCheckbox(type='checkbox', name="pass_checkbox")
+                          |  Update Password
+                      #updatePassDiv.update-password
+                        .alert.alert-info.alert-dismissable
+                          a.panel-close.close(data-dismiss='alert') ×
+                          i.fa.fa-bell
+                          |     Please
+                          strong  uncheck checkbox 
+                          |    if you do not want to update your password.
+                        .form-group
+                          label.col-md-3.control-label * New Password:
+                          .col-md-8
+                            input#new_pass.form-control(type='password', name='new_pass', auto-complete='new-password')
+                        .form-group
+                          label.col-md-3.control-label * Confirm password:
+                          .col-md-8
+                            input.form-control(type='password', name='confirm_new_pass', auto-complete='new-password')
+                      .form-group
+                        label.col-md-3.control-label
+                        .col-md-8.edit-footer
+                          input#saveBtn.btn.btn-primary(type='button', value='Save Changes')
+                          input.btn.btn-default(style='margin-left: 1em', type='reset', value='Cancel')
+                        label.col-md-3.control-label
+                        .col-md-8.edit-footer
+                          a.pull-right.deactivate(href="#", data-toggle='modal', data-target='#deleteAccountModal') Deactivate Account
+    hr  
+
+    #deleteAccountModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+            h3
+              | Delete Account
+          .modal-body
+            | By doing this you are letting go of fun opportunities in the future to
+            | make friends, get together, and play. <br/>
+            | Please be sure this would permanently delete your account from <b>TeamUp</b>.
+            form#deleteForm.form-horizontal.col-sm-12(role="form")
+              input(type='hidden', name='_csrf', value=csrfToken)
+              .form-group
+                 label(style='margin-top: 25px') E-Mail
+                 input.form-control(name='userEmail', value=userData.email, data-placement='top', data-trigger='manual', type='email', readonly)
+              .form-group
+                 label * Password
+                 input.form-control(name='userPass', type='password', placeholder='Enter your password',  autocomplete='new-password')
+                 .alert.alert-danger(id='errorDiv', style='display: none')
+                    p#errorPara
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+            button#btnDelAccount.btn.btn-danger.pull-right(type='submit') Delete
+
+    script(src="/javascripts/edit.js")
+    script(src="/javascripts/deleteAccount.js")

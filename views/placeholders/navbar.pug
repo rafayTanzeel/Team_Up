@@ -1,0 +1,53 @@
+script(src="/javascripts/navbar.js")
+header
+  .container-fluid
+    nav.navbar.navbar-fixed-top(role='navigation')
+      .navbar-header
+        if isAuth
+          button.navbar-toggle.side-nave-icon.pull-left(type="button", data-toggle="collapse", data-target="#navbarResLeft", id="sidebar", onclick="this.classList.toggle('side-change');")
+            img(src="/assets/images/svg/page-layout-sidebar-left.svg" alt="Left Side Nav")
+            //- span.glyphicon.glyphicon-cog(style="font-size:1.3em;")
+          button.navbar-toggle.pull-right(type="button", data-toggle="collapse", data-target="#navbarResRight", onclick="this.classList.toggle('change');")
+            span.icon-bar.bar1
+            span.icon-bar.bar2
+            span.icon-bar.bar3
+        span.removeSelect.navbar-brand.hvr-grow-rotate
+          // <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+          | Team Up
+
+      if isAuth
+        #navbarResRight.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-left
+            li
+              a.hvr-underline-from-center(href="/") Home
+            li
+              a.hvr-underline-from-center(href="/sports") Sports
+            li
+              a.hvr-underline-from-center(href="/about") About Us
+
+          ul.nav.navbar-nav.navbar-right
+            li
+              a.hvr-underline-from-center(href='#', data-toggle='modal', data-target='#contactUsModal') Contact Us
+            li
+              a.hvr-underline-from-center(href='/auth/logout')
+                span.glyphicon.glyphicon-log-in
+                |  Log Out
+
+    if isAuth
+      aside.sidebarDisplayed
+        include sidebar
+
+
+if isAuth
+  script(type='text/javascript').
+      $(() => {
+        $("nav").addClass("scrolled");
+      });
+else
+  script(type='text/javascript').
+    $(() => {
+      $(document).scroll(function () {
+      const navBar = $("nav");
+      navBar.toggleClass('scrolled', $(this).scrollTop() > navBar.height());
+      });
+    });

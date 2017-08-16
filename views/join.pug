@@ -1,0 +1,34 @@
+extends placeholders/header
+include ./mixins/accordion-eventjoin.pug
+
+block content
+  aside.sidebarDisplayed
+    #page-content-wrapper
+      .container-fluid
+        .page-header.panel.panel-default
+          h2.header
+            em Join
+            |  events near you!
+        .container-fluid
+          .row
+            .panel.panel-default
+              input#pac-input.controls.col-xs-5(type='text', placeholder='Enter a Location here to see events around')
+              #map
+      .container-fluid.home_container
+        .row
+          a#showAllEventsBtn.btn.btn-default.show-all-events Show All Events
+        .row
+          .col-md-3-offset-3.col
+            div#accordion.panel-group
+              - for (let i = 0; i < userEvents.length; i++) {
+                +event-panel('collapse' + i, userEvents[i].teamupName, fromDate[i], toDate[i],
+                userEvents[i].sport, userEvents[i].maxPlayers, userEvents[i].locationName,
+                userEvents[i].locationAddress, userEvents[i].aliasId, userEvents[i].users.length, 'mixin' + i)
+              - }
+              input(type='hidden', id='input_events', value=userEvents)
+
+  link(rel="stylesheet", href="/stylesheets/home.css")
+  link(rel="stylesheet", href="/stylesheets/join.css")
+  script(type='text/javascript', src='/javascripts/join.js')
+  script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key='+mapKey+'&libraries=places&callback=loadMap', async='', defer='')
+

@@ -1,0 +1,96 @@
+extends placeholders/header
+block content
+  aside.sidebarDisplayed
+    #page-content-wrapper
+      .container-fluid
+        .page-header
+          h2 About Us
+        row
+          .col-md-12
+            #accordion.panel-group(role='tablist', aria-multiselectable='true')
+              .panel.panel-default
+                #headingOne.panel-heading(role='tab')
+                  h4.panel-title
+                    a.collapsed(role='button', data-toggle='collapse', href='#collapseOne', aria-expanded='false', aria-controls='collapseOne')
+                      span
+                        img(src='/assets/images/svg/team.svg' alt='Team', title='Team', width='24', height='24')
+                        |  Who Are We?
+                #collapseOne.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingOne')
+                  .panel-body
+                    img(src='/assets/images/raster/jpg/team-robot.jpg' alt='Team Robot', title='Team Robot')
+                    br
+                    | Rafay Tanzeel, Rudy Kong, Nathan Dhami, NoorUllah Randhawa
+              .panel.panel-default
+                #headingTwo.panel-heading(role='tab')
+                  h4.panel-title
+                    a.collapsed(role='button', data-toggle='collapse', href='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                      span
+                        img(src='/assets/images/svg/goal.svg' alt='Goal', title='Goal', width='24', height='24')
+                        |  What Is Our Goal?
+                #collapseTwo.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingTwo')
+                  .panel-body
+                    | The goal of our project was to create a sports team-up website
+                    | that would allow users to setup sports events and play sports in
+                    | their community. Here are some key objectives:
+                    br
+                    strong Social Interaction, Event System, Convenience
+              .panel.panel-default
+                #headingThree.panel-heading(role='tab')
+                  h4.panel-title
+                    a.collapsed(role='button', data-toggle='collapse', href='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                      span
+                        img(src='/assets/images/svg/pointer.svg' alt='Pointer', title='Pointer', width='24', height='24')
+                        |  How To Use TeamUp?
+                #collapseThree.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingThree')
+                  .panel-body
+                    p Login - Register or sign in using Google, Facebook, or Twitter
+                    img.img-responsive(src='/assets/images/raster/jpg/Login.jpg' alt='Login', title='Login')
+                    br
+                    p Create Sports Event - Select a location using Google Maps API
+                    img.img-responsive(src='/assets/images/raster/jpg/Create.jpg' alt='Create', title='Create')
+                    br
+                    p Event Details - After selecting a location from the Google Maps, you can add a name, set a time, select a sport and then click on create
+                    img.img-responsive(src='/assets/images/raster/jpg/Details.jpg' alt='Details', title='Details')
+                    br
+                    p The Event Room - This is where you can chat with others who are going to the sports event
+                    img.img-responsive(src='/assets/images/raster/jpg/Chat.jpg' alt='Chat', title='Chat')
+                    br
+                    p Join Sports Events - Join any events around you
+                    img.img-responsive(src='/assets/images/raster/jpg/Join.jpg' alt='Join', title='Join')
+              .panel.panel-default
+                #headingFour.panel-heading(role='tab')
+                  h4.panel-title
+                    a.collapsed(role='button', data-toggle='collapse', href='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
+                      span
+                        img(src='/assets/images/svg/overview.svg' alt='Overview', title='Overview', width='24', height='24')
+                        |  Overview
+                #collapseFour.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingFour')
+                  .panel-body
+                    | Physical activity is essential for everyone and what a
+                    | better way to exercise than to play your favorite sports.
+                    | However, to casually organize a sports event is more
+                    | difficult than you think. We are often faced with a
+                    | dilemma as to where to gather enough people, where can we
+                    | can play, etc. Well now
+                    strong  TeamUp
+                    |  is here for you! Create and join events on a click of a
+                    | button. Easier than ever registration and a very
+                    | reponsive website. Keep on socializing with our chat
+                    | system. These traits integrated into a web application
+                    | make it the perfect social event system for sports.
+                    br
+                    br
+                    | The project idea was inspired by living a healthier
+                    | lifestyle which promotes wellness and good lifestyle.
+              .panel.panel-default
+                #headingFive.panel-heading(role='tab')
+                  h4.panel-title
+                    a.collapsed(role='button', data-toggle='collapse', href='#collapseFive', aria-expanded='false', aria-controls='collapseFive')
+                      span
+                        img(src='/assets/images/svg/runer-silhouette-running-fast.svg' alt='Runer', title='Runer', width='24', height='24')
+                        |  Sports
+                #collapseFive.panel-collapse.collapse(role='tabpanel', aria-labelledby='headingFive')
+                  .panel-body
+                    | Check the
+                    a.text-primary(role='button', href='/sports')  Sports
+                    |  page to see what sports are available

@@ -1,0 +1,31 @@
+mixin event-panel(collapseNum, teamupName, from, to, sport, maxPlayers, locationName, locationAddress, count, creatorId, urlChat, urlEdit, urlLeave, urlDelete, aliasId, event)
+  .panel.panel-default
+    .panel-heading.container-fluid
+      .row
+        h5.panel-title
+          .col-md-4
+            a(data-toggle="collapse", href= '#' + collapseNum)
+              span= teamupName
+          .col-md-6
+            span#status
+          div#participants.col-md-2.text-right
+            abbr(title="Participants")
+              i.fa.fa-user &nbsp; #{count} / #{maxPlayers}
+    div.panel-collapse.collapse.in(id=collapseNum)
+      .panel-body
+        p <label>Sport:</label> #{sport}
+        p <label>Location:</label> #{locationName}
+        p <label>Address:</label> #{locationAddress}
+        p  <label>From:</label> #{from}
+        if (to)
+          p <label>To:</label> #{to}
+        div
+          a.btn.btn-primary(role="button", href=urlChat) Join chat
+          a.btn.btn-primary.participantsBtn(role="button", href="#", data-toggle='modal', data-target='#participantsModal') Who's going?
+            input(type='hidden', value=event)
+          if (creatorId != userData.userId)
+            a.btn.btn-primary.pull-right.leaveEventBtn(role="button", href='#') Leave
+              input(type='hidden', value=aliasId)
+          else
+            a.btn.btn-primary.pull-right.editEventBtn(role="button", href='#', data-toggle='modal', data-target='#editEventModal') Edit
+              input(type='hidden', value=event)

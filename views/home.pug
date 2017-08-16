@@ -1,0 +1,134 @@
+//- img(src= user.image) will be used for #account-img
+//-  h4= user.name will be used instead of Brad
+link(rel="stylesheet", href="/stylesheets/home.css")
+link(rel="stylesheet", href="/stylesheets/customScrollbar.css")
+include ./mixins/accordion-event.pug
+
+aside.sidebarDisplayed
+  //- Accordion display of events
+  #page-content-wrapper
+    .container-fluid
+      #myCarousel.carousel.slide(data-ride='carousel')
+        // Indicators
+        ol.carousel-indicators
+          li.active(data-target='#myCarousel', data-slide-to='0')
+          li(data-target='#myCarousel', data-slide-to='1')
+          li(data-target='#myCarousel', data-slide-to='2')
+          li(data-target='#myCarousel', data-slide-to='3')
+        // Wrapper for slides
+        .carousel-inner.carousel-items
+          .item.active
+            img(src='/assets/images/raster/jpg/c-soccer.jpg')
+            .carousel-caption
+              h4 Enjoy the game!
+          .item
+            img(src='/assets/images/raster/jpg/c-volleyball.jpg')
+            .carousel-caption
+              h4 Make new friends
+          .item
+            img(src='/assets/images/raster/jpg/c-basketball.jpg')
+            .carousel-caption
+              h4 Be the best!
+          .item
+            img(src='/assets/images/raster/jpg/c-baseball.jpg')
+            .carousel-caption
+              h4 Play wherever you like
+        // Left and right controls
+        a.left.carousel-control(href='#myCarousel', data-slide='prev')
+          span.glyphicon.glyphicon-chevron-left
+          span.sr-only Previous
+        a.right.carousel-control(href='#myCarousel', data-slide='next')
+          span.glyphicon.glyphicon-chevron-right
+          span.sr-only Next
+    .container-fluid
+      .page-header
+        h2.header My Events
+    .container-fluid.home_container
+      if(userEvents.length == 0)
+        .jumbotron
+          h1 Welcome #{userData.firstname}!
+          p <i class="fa fa-arrow-left fa-2x"></i> &nbsp Join a sports event or create a new one using the side navigation panel
+
+      row
+        .col-md-3-offset-3.col
+          div#accordion.panel-group
+            - for (let i = 0; i < userEvents.length; i++) {
+                +event-panel('collapse' + i, userEvents[i].teamupName, fromDate[i], toDate[i],
+                userEvents[i].sport, userEvents[i].maxPlayers, userEvents[i].locationName, userEvents[i].locationAddress,
+                userEvents[i].users.length, userEvents[i].createdBy.userId, userEvents[i].urlChat, userEvents[i].urlEdit,
+                userEvents[i].urlLeave, userEvents[i].urlDelete, userEvents[i].aliasId, userEvents[i])
+            - }
+
+#participantsModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel1', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+        h3#myModalLabel1 Participant List
+      .modal-body
+        ul#listMembers
+
+      .modal-footer
+        button.btn.pull-right(data-dismiss='modal', aria-hidden='true') Cancel
+
+#editEventModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+        h3#myModalLabel Edit Event
+      .modal-body
+        h5
+          .alert.alert-info.alert-dismissable
+            a.panel-close.close(data-dismiss='alert') ×
+            i.fa.fa-bell
+            |     If you want to change the location of the event, please delete this event and
+            |         then create a new event with your desired location.
+        form#updateEventForm.form-horizontal(role="form")
+          input(type='hidden', name='_csrf', value= csrfToken)
+          input(type='hidden', id='input_eventModal')
+          .form-group
+            label.col-md-4.control-label TeamUp Name:
+            .col-md-7
+                input#teamupName.form-control(type='text', name='teamupName', placeholder='TeamUp', required, data-error='TeamUp Name is required.')
+          .form-group
+            label.col-md-4.control-label From:
+            .col-md-7
+              .input-group.bootstrap-timepicker.timepicker
+                input#from.form-control(type='text', name='from', placeholder='MM/DD/YYYY HH:MM AM', required='required', data-error='Start Date is required.')
+                span.input-group-addon
+                  i.fa.fa-calendar
+          .form-group
+            label.col-md-4.control-label To:
+            .col-md-7
+              .input-group.bootstrap-timepicker.timepicker
+                input#to.form-control(type='text', name='to', placeholder='MM/DD/YYYY HH:MM AM')
+                span.input-group-addon
+                  i.fa.fa-calendar
+          .form-group
+            label.col-md-4.control-label Maximum Players:
+            .col-md-7
+              input#maxPlayers.form-control(type='number', name='maxPlayers')
+          .form-group
+            label.col-md-4.control-label Sport:
+            .col-md-7
+              input#sport.form-control(type='text', name='sport', placeholder='Sport', readonly)
+          .form-group
+            label.col-md-4.control-label Name of Location:
+            .col-md-7
+              input#locationName.form-control(type='text', name='locationName', readonly)
+          .form-group
+            label.col-md-4.control-label Address of Location:
+            .col-md-7
+              input#locationAddress.form-control(type='text', name='locationAddress', readonly)
+          .form-group
+            button#editEventSaveBtn.btn.btn-success.pull-right(href='#') Save Changes
+      .modal-footer
+        button.btn.pull-right(data-dismiss='modal', aria-hidden='true') Cancel
+        button#eventDelBtn.btn.btn-danger.pull-left(href='#') Delete Event
+
+script(src="/javascripts/home.js")
+script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js')
+script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js')
+script(type='text/javascript', src='/javascripts/create.js')
+link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css')

@@ -1,0 +1,26 @@
+form#login(action='/auth/login', method='POST', data-toggle="validator", role="form")
+  input(type='hidden', name='_csrf', value= csrfToken)
+  //- form-element(forLabel, label, type, name, id, placeholder, iconClassName, requiredBool)
+  if errorExist
+      .alert.alert-danger(style="background-color:rgba(4, 33, 33, 0.52); color:rgb(214, 205, 52)")
+        each errMsg in loginErrors
+          p= errMsg
+
+  +form-element('email', 'Email', 'email', 'email', 'emailLogin', 'Enter Email', 'glyphicon glyphicon-envelope', true)(data-error="Email Address is invalid")
+  +form-element('password', 'Password', 'password', 'password', 'passwordLogin','Enter Password', 'glyphicon glyphicon-lock', true)(data-error="Password must have minimum 6 character", data-minlength="6")
+  //- .checkbox
+  //-   label
+  //-     input(type='checkbox', name='remember')
+  //-     |  Remember me
+  button.btn.btn-primary.btn-block.hvr-grow(type='submit') Submit
+  hr
+  h5.text-center.social-signin Social Media Sign In
+  a.btn.btn-block.btn-social.btn-google.hvr-grow(href="/auth/google")
+    span.fa.fa-google
+    |             Sign in with Google
+  a.btn.btn-block.btn-social.btn-facebook.hvr-grow(href="/auth/facebook")
+    span.fa.fa-facebook
+    |             Sign in with Facebook
+  a.btn.btn-block.btn-social.btn-twitter.hvr-grow(href="/auth/twitter")
+    span.fa.fa-twitter
+    |             Sign in with Twitter

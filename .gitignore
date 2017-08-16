@@ -1,0 +1,38 @@
+# Debug log files
+logs
+*.log
+
+# Dependency directory
+node_modules
+bower_components
+
+# Upload directory
+public/uploads
+
+# Webpack Source Maps
+*.map
+
+# Local env file with credentials
+.env
+
+# IDE
+.idea/
+*.swp
+
+# vagrant
+*~
+.vagrant
+
+# pythonc and sql
+*.pyc
+*.sqite3
+
+# locks and bundle
+Gemfile.lock
+.bundle
+
+# cryptographic random data
+.rnd
+
+# socket.io client library
+socket.io-client

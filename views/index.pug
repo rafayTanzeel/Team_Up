@@ -1,0 +1,39 @@
+extends placeholders/header.pug
+include ./mixins/form.element.pug
+
+block content
+  if isAuth
+    include home
+  else
+    - var label = csrfToken
+
+    link(rel='stylesheet', href='/bower_components/bootstrap-social/bootstrap-social.css')
+    link(href="/stylesheets/index.css", rel="stylesheet")
+
+    .jumbotron.vertical-center
+      .container-fluid
+        .background
+        #particles-js
+        .container-fluid
+          .row
+            .col-xs-12.col-sm-push-3.col-sm-6.glass
+              h2.text-center Welcome to TeamUp!
+              h5.text-center Create or join sports events and chat with your friends
+                hr
+              ul.nav.nav-tabs.nav-justified
+                li#loginNav.active.hvr-overline-from-left.removeSelect
+                  a(onclick='return false') Sign In
+                li#registerNav.hvr-overline-from-left.removeSelect
+                  a(onclick='return false') Register
+              br
+
+              include login
+              include register
+
+    script(src="/bower_components/particles.js/particles.js", type="text/javascript")
+    script(src="/javascripts/index.js", type="text/javascript")
+    script(src="/javascripts/particles.js", type="text/javascript")
+    script(src="/bower_components/bootstrap-validator/dist/validator.min.js", type="text/javascript")
+    script(src="/javascripts/formValidation.js", type="text/javascript")
+
+

@@ -1,0 +1,8 @@
+//processes.json:
+    {
+      "apps" : [{
+        "name"        : "team_up",
+        "script"      : "bin/www",
+        "watch" : ["server.js","routes","socketApi","bin/www","models"],
+       }]
+    }

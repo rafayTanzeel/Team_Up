@@ -1,0 +1,32 @@
+link(rel="stylesheet", href="/stylesheets/sidebar.css")
+div#overlay
+#sidebar-wrapper
+  .profile-user-pic
+    img.cropped(src= userData.image, width="120", height="120")
+    .profile-user-name #{userData.name}
+    .profile-user-status.dropdown
+      a#statusBtn.list-group-item.list-group-item-action(type='button', data-toggle='dropdown', href='#')
+        | [ Status: #{userData.status} ]
+        span.caret
+      ul.dropdown-menu.status-menu.pull-right
+        li
+          a(href='#') Available
+        li
+          a(href='#') Away
+        li
+          a(href='#') Busy
+        li
+          a(href='#') Offline
+  input(type='hidden', id='input_csrf', value=csrfToken)
+  ul.sidebar-nav-content.list-group
+    li
+      a.list-group-item.list-group-item-action(href="/create")
+        | Create Sports Event
+    li
+      a.list-group-item.list-group-item-action(href="/join")
+        | Join Sports Event
+    li
+      a.list-group-item.list-group-item-action(href='/edit/profile')
+        | Edit Profile
+
+script(src="/javascripts/sidebar.js")

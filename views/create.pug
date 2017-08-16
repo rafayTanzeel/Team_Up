@@ -1,0 +1,90 @@
+extends placeholders/header
+block content
+  aside.sidebarDisplayed
+    #page-content-wrapper
+      .container-fluid
+        .page-header.panel.panel-default
+          h2
+            em Where
+            |  Would You Like To Play?
+          p To select a location, click on one of the marker
+          p#errorLocation
+        .container-fluid
+          .row
+            input#pac-input.controls.col-xs-5(type='text', placeholder='Enter a Location here to see new locations around')
+            #map
+        hr
+        .panel.panel-default
+          .panel-heading.mapPanel
+            .panel-title.text-center
+              h3
+                em Event Details
+          .panel-body
+            #event-details
+              form.form-horizontal(action="/create", method="POST")
+                input(type='hidden', name='_csrf', value= csrfToken)
+                input#map-input(type='hidden', name='loc', value="")
+                .form-group
+                  label.col-md-2.control-label * TeamUp Name:
+                  .col-md-9
+                    input#teamupName.form-control(type='text', name='teamupName', placeholder='TeamUp', required='required', data-error='TeamUp Name is required.')
+                .form-group
+                  label.col-md-2.control-label * From:
+                  .col-md-9
+                    .input-group.bootstrap-timepicker.timepicker
+                      input#from.form-control(type='text', name='from', placeholder='Mon, Aug 06 2017 5:20PM', required='required', data-error='Start Date is required.')
+                      span.input-group-addon
+                        i.fa.fa-calendar
+                .form-group
+                  label.col-md-2.control-label * To:
+                  .col-md-9
+                    .input-group.bootstrap-timepicker.timepicker
+                      input#to.form-control(type='text', name='to', placeholder='Mon, Aug 06 2017 8:20PM', required='required', data-error='End Date is required.')
+                      span.input-group-addon
+                        i.fa.fa-calendar
+                .form-group
+                  label.col-md-2.control-label * Sport:
+                  .col-md-9
+                    button.btn.btn-info#soccer.marker.hvr-wobble-skew(style="outline: none;")
+                      span
+                        img(src="/assets/images/svg/soccer.svg" alt="Soccer", title='Soccer', width='24', height='24')
+                        |  Soccer
+                    button.btn.btn-info#basketball.marker.hvr-wobble-skew(style="outline: none;")
+                      span
+                        img(src="/assets/images/svg/basketball.svg" alt="Basketball", title='Basketball', width='24', height='24')
+                        |  Basketball
+                    button.btn.btn-info#volleyball.marker.hvr-wobble-skew(style="outline: none;")
+                      span
+                        img(src="/assets/images/svg/volleyball.svg" alt="Volleyball", title='Volleyball', width='24', height='24')
+                        |  Volleyball
+                    button.btn.btn-info#baseball.marker.hvr-wobble-skew(style="outline: none;")
+                      span
+                        img(src="/assets/images/svg/baseball.svg" alt="Baseball", title='Baseball', width='24', height='24')
+                        |  Baseball
+                    button.btn.btn-info#other.marker.hvr-wobble-skew(style="outline: none;") Other(Enter below)
+                    input#sport.form-control(type='text', name='sport', placeholder='Sport', required='required', data-error='Sport is required.')
+                .form-group
+                  label.col-md-2.control-label * Maximum Number of Players:
+                  .col-md-9
+                    input#maxPlayers.form-control(type='number', name='maxPlayers', placeholder='22', required='required', data-error='Max Number of Players is required.')
+                .form-group
+                  label.col-md-2.control-label * Name of Location:
+                  .col-md-9
+                    input#locationName.form-control(type='text', name='locationName', placeholder='Name of Location', readonly='', data-error='Location Name is required.')
+                .form-group
+                  label.col-md-2.control-label * Address of Location:
+                  .col-md-9
+                    input#locationAddress.form-control(type='text', name='locationAddress', placeholder='Address of Location', readonly='', data-error='Location Address is required.')
+                .form-group
+                  label.col-md-2.control-label
+                  .col-md-9
+                    button#submit.btn.btn-primary.btn-block.hvr-grow(type='submit') Create Event
+
+  script(type='text/javascript', src='/javascripts/maps.js')
+  script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key='+mapKey+'&libraries=places&callback=loadMap', async='', defer='')
+  script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js')
+  script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js')
+  script(type='text/javascript', src='/javascripts/create.js')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css')
+  link(rel="stylesheet", href="/stylesheets/create.css")
+

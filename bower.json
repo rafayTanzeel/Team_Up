@@ -1,0 +1,31 @@
+{
+  "name": "team-up",
+  "description": "Team Up website that allow members to find other people to join them in a sports activity",
+  "main": "server.js",
+  "authors": [
+    "Rafay Tanzeel",
+    "Rudy Kong Tin Lun",
+    "Nathan Dhami",
+    "NoorUllah Randhawa"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-social": "^5.1.1",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0",
+    "hover": "^2.1.1",
+    "bootstrap-validator": "^0.11.9",
+    "particles.js": "^2.0.0",
+    "bootstrap-sweetalert": "^1.0.1"
+  }
+}

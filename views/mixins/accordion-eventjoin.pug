@@ -1,0 +1,24 @@
+mixin event-panel(collapseNum, teamupName, from, to, sport, maxPlayers, locationName, locationAddress, aliasId, count, mixinId)
+  .panel.panel-default.ac-event-panel(id = mixinId)
+    .panel-heading.container-fluid
+      .row
+        h5.panel-title
+          .col-md-4
+            a(href= '#' + collapseNum)
+              span= teamupName
+          .col-md-5
+            span#status
+          div#participants.col-md-3.text-right
+            abbr(title="Participants")
+              i.fa.fa-user &nbsp; #{count} / #{maxPlayers}
+    div.panel-collapse(id=collapseNum)
+      .panel-body
+        p <label>Sport:</label> #{sport}
+        p <label>Location:</label> #{locationName}
+        p <label>Address:</label> #{locationAddress}
+        p  <label>From:</label> #{from}
+        if (to)
+          p <label>To:</label> #{to}
+        div
+          button.joinEventBtn.btn.btn-success(role="button", href='#') Join Event
+            input(type='hidden', value=aliasId)

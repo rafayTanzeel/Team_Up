@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title= title
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Noto+Sans")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Trade+Winds")
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/font-awesome/css/font-awesome.min.css')
+    link(rel="stylesheet", href="/bower_components/hover/css/hover-min.css")
+    link(href="/stylesheets/global.css", rel="stylesheet")
+    link(href="/stylesheets/navbar.css", rel="stylesheet")
+    link(rel="stylesheet", href="/bower_components/bootstrap-sweetalert/dist/sweetalert.css")
+
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script(src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js")
+    script(src="/bower_components/bootstrap-sweetalert/dist/sweetalert.min.js")
+
+  body
+    include navbar
+    block content
+    include ./footer.pug
+    if isAuth
+        include contactModal

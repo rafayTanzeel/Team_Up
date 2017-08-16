@@ -1,0 +1,92 @@
+extends placeholders/header
+block content
+  link(rel="stylesheet", href="/stylesheets/event.css")
+  link(rel="stylesheet", href="/stylesheets/customScrollbar.css")
+  aside.sidebarDisplayed
+    //<button href="#" id="toggle-sidebar"><span class="btn glyphicon glyphicon-user"> </span> </a>
+    // main content here.
+    // Row 1:
+    // header
+    // Panel A: Map (above chat)
+    // Panel B: Event Details (right to chat and map)
+    // Panel C: Chat Application (footer)
+    #page-content-wrapper
+      .container-fluid
+        .page-header
+          h3#event-Title= event.teamupName
+        .container-fluid
+          .row
+            div.col-md-6.panelA
+              .panel-group
+                .panel.panel-primary
+                  .panel-heading
+                    h4 Map
+                  .panel-body
+                    abbr(title="Relocate to event")
+                      a.btn.btn-default
+                        i(class="fa fa-bullseye fa-2x")
+                    #map
+            div.col-md-6.panelB
+              .panel-group
+                .panel.panel-primary
+                  .panel-heading
+                    h4 Event Details
+
+                  .panel-body
+                    ul#event-details
+                      li.item.
+                        <span class="icon-default glyphicon glyphicon-map-marker" title="Location"></span> <span class="details"> #{event.locationName} <br/>
+                        <span class="details_newline">  #{event.locationAddress} </span> <br/> </span>
+                      li.item <span class="icon-default glyphicon glyphicon-cog" title="Sport"></span> <span class="details">  #{event.sport} </span>
+                      li.item <span class="icon-default glyphicon glyphicon-calendar"  title="Schedule"></span> <span class="details"> #{fromDate} <br/>
+                        if(event.to)
+                          <span class="details_newline2"> <strong> to </strong> #{toDate} </span> <br/> </span>
+                      li.item <span class="icon-default glyphicon glyphicon-user" title="Members"></span> <span class="details"> #{event.users.length}
+                        if (event.users.length > 1)
+                          | &nbsp; members going </span>
+                        else
+                          | &nbsp; member going </span>
+                .panel-group
+                .panel.panel-primary
+                  .panel-heading
+                    h4 Chatroom Users
+
+                  .panel-body
+                    //- For now, this shows who has entered the chat.
+                    ul#event-participants
+          .spacer
+          .row
+            .col-md-4
+            .col-md-4.panelC
+              div.chatUI-container
+                div.chatUI-statusBar
+                div.chatUI-msgBody
+                  ul
+                    //- Messages enter here
+                div.chatUI-usrInput
+                  form(action="", method="")
+                    div.input-group
+                      input.form-control(type='text', value='', id="inputSendMsg", placeholder="message #event", autocomplete="off")
+                      span.input-group-btn <button class="btn btn-primary" type="submit"> Send </button>
+            .col-md-4
+
+
+  script.
+    var localUserData = {
+      img: '#{userData.image}',
+      name: '#{userData.firstname}',
+      userId: '#{userData.userId}',
+      status: '#{userData.status}',
+    }
+    var localEventData = {
+      roomId: '#{event.roomId}',
+      loc: ['#{event.locationCoordinates[0]}', '#{event.locationCoordinates[1]}'],
+      locationName: '#{event.locationName}',
+      locationAddr: '#{event.locationAddress}',
+    }
+
+  script(type='text/javascript', src='/javascripts/eventMaps.js')
+  script(type='text/javascript', src='https://maps.googleapis.com/maps/api/js?key='+mapKey+'&libraries=places&callback=loadMap', async='', defer='')
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js")
+  script(src="/javascripts/socket.io-client/dist/socket.io.js")
+  script(src="/javascripts/event.js")
