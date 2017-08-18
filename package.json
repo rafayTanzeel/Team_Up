@@ -1,7 +1,6 @@
 {
   "name": "team-up",
   "version": "1.0.0",
-  "private": true,
   "description": "Team Up website that allow members to find other people to join them in a sports activity",
   "main": "server.js",
   "scripts": {
@@ -57,6 +56,7 @@
     "nsp": "^2.6.3"
   },
   "engines": { 
-	"node" : "6.11.2"
+	"node" : "6.11.2",
+	"npm" : "3.10.10"
   }
 }
