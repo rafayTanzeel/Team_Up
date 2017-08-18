@@ -8,7 +8,7 @@ const http = require('http');
 const nconf = require('../src/config/nconfConfig');
 const winston = require('../src/config/winstonConfig');
 const httpsOptions = require('../src/config/sslConfig');
-const PORT = nconf.get('http:port');
+const PORT = process.env.PORT || nconf.get('http:port');
 const socketApi = require('../socketApi');
 
 serverConfig.set('port', PORT);
