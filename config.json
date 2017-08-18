@@ -17,17 +17,17 @@
   "google": {
     "clientID": "767931424494-iq2vbnf82i1v51bsaeao1vgcvh1urd9h.apps.googleusercontent.com",
     "clientSecret" : "oG5lLtOr3vNtKmER6W5l_-Lb",
-    "callbackURL" : "http://localhost:8080/auth/google/callback"
+    "callbackURL" : "https://team-ups.herokuapp.com/auth/google/callback"
   },
   "facebook": {
     "clientID": "663497253847122",
     "clientSecret" : "da0aaea72def0f74fb4fe831ac80d0c4",
-    "callbackURL" : "http://localhost:8080/auth/facebook/callback"
+    "callbackURL" : "https://team-ups.herokuapp.com/auth/facebook/callback"
   },
   "twitter": {
     "consumerKey": "8kCJQbl2sL6HpGyXnz9qUnYEq",
     "consumerSecret" : "r7zpECv04V9UMCvp6S8jFesoLCqB0pK0bgEMjGWusrQnxYQqL0",
-    "callbackURL" : "http://localhost:8080/auth/twitter/callback"
+    "callbackURL" : "https://team-ups.herokuapp.com/auth/twitter/callback"
   },
   "googleMap":{
     "key" : "AIzaSyAqXv5KYYnWPvlLczxIGlcGo4w6spUYPdI"
