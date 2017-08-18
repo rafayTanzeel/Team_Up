@@ -1,5 +1,5 @@
 ## Team Up
-A web application to find other sport fanatics to join you with an sports activity in nearby parks.
+A web application to find other sport fanatics to join you in an sports event in nearby parks.
 
 Preview: https://team-ups.herokuapp.com/
 
