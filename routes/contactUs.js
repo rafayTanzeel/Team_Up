@@ -35,8 +35,7 @@ router.route('/')
     // setup email data with unicode symbols
     let mailOptions = {
         from: '\'' + sender + '\'',
-        to: 'noorr8@gmail.com, rudykong2319@gmail.com,'
-            + 'nate.dhami@gmail.com, rafaytanzeel@gmail.com',
+        to: 'rafaytanzeel@gmail.com',
         subject: subject,
         html: textBody,
     };
